@@ -1,0 +1,19 @@
+{% extends 'web_app/base.html' %}
+{% block content %}
+<div style="color: antiquewhite;">
+    <br>
+    <h2>Registration</h2>
+</div>
+<form method="POST" class="post-form" style="color: antiquewhite;">
+    {% csrf_token %}
+    <p>Username : {{form.username}}</p>
+    <p style="margin-left: -140px;">Email Id : {{form.email}}</p>
+    <p>Password : {{form.password}}</p>
+    <button type="submit" class="save btn btn-default">Register</button>
+</form> 
+<div style="color: antiquewhite;">
+<br>
+<p>Already have an account?</p>
+<a href="{% url 'login_page' %}"> Go to login</a>
+</div>
+{% endblock %}

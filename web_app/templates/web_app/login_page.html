@@ -1,0 +1,16 @@
+{% extends 'web_app/base.html' %}
+{% block content %}
+<div style="color: antiquewhite;">
+    <br>
+    <h2>Login</h2>
+</div>
+<form method="POST" class="post-form" style="color: antiquewhite;">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Login</button>
+</form>   
+<div style="color: antiquewhite;">
+<br>
+<p>Not yet registered?</p>
+<a href="{% url 'reg_page' %}"> Click here</a>
+</div>
+{% endblock %}

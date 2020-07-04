@@ -1,0 +1,56 @@
+/* Login form css */
+body{
+text-align:center;
+align:center;
+margin: 0px;
+}
+input[type=text], input[type=password]{
+width:20%;
+padding:7px 10px;
+margin: 8px 0;
+display:inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+#header{
+    background-color:#097479;
+    text-align: left;
+    width: 100%;
+    height: 85px;
+}
+#welcome-text{
+    margin-left: 100px;
+    color: #ffffff;
+    position: absolute;
+    margin-top: 13px;
+}
+button{
+background-color: #097479;
+width: 10%;
+padding: 9px 5px;
+margin:5px 0;
+cursor:pointer;
+border:none;
+color:#ffffff;
+}
+button:hover{
+opacity:0.8;
+}
+#container{
+    position: relative;
+
+}
+#form-container{
+background-color: #333333;
+
+margin-top: 15px;
+width: auto;
+padding-top: 10px;
+
+}
+#un,#ps{
+font-family:'Lato', sans-serif;
+color:#EEEEEE;
+}
+/* Login form css */
+

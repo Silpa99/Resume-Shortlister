@@ -7,19 +7,19 @@ class Profile(models.Model):
     name = models.CharField(max_length=30)
     phoneno = models.IntegerField()
     dob = models.DateField()
-    resume = models.FileField(upload_to = user_directory_path)
+    #resume = models.FileField(upload_to = user_directory_path)
+    
+class Job_postings(models.Model):
+    title = models.CharField(max_length=30)
+    description = models.CharField(max_length=100)
 
 class Skills(models.Model):
-    skill_name = model.CharField(max_length = 40)
-    jobs = ManyToMany(Job_postings)
+    skill_name = models.CharField(max_length = 40)
+    jobs = models.ManyToManyField(Job_postings)
 
 class Userskills(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,)
     u_skill = models.ForeignKey(Skills, on_delete = models.CASCADE)
-
-class Job_postings(models.Model):
-    title = models.CharField(max_length=30)
-    description = models.CharField(max_length=100)
 
 
 class Job_applications(models.Model):
