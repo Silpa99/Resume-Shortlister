@@ -3,37 +3,34 @@ from django.contrib.auth import login , authenticate
 from .models import Profile
 from .forms import UserLoginForm , UserRegisterForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
+
 
 # Create your views here.
 
 def login_page(request):
     form = UserLoginForm()
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-       # user = authenticate(username=username, password=password)
-        #if user is not None:
-            #if user.is_active:
-            #login(request, user)
-        return redirect('dashboard')
-        #else:
-            #return redirect('login_page')
-    #else:
+       if not request.user.is_authenticated:
+           return HttpResponseRedirect(reverse('login_page'))
+       else:
+           return HttpResponseRedirect(reverse('dashboard'))
     return render(request, 'web_app/login_page.html',{'form':form})
 
 def reg_page(request):
-    next = request.GET.get('next')
-    form = UserRegisterForm(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        if next:
-            return redirect(next)
-        return redirect('/')
+    form = UserRegisterForm(request.POST, request.FILES)
+    if request.method=='POST':
+        next = request.GET.get('next')
+        if form.is_valid():
+            user = form.save(commit=False)
+            password = form.cleaned_data.get('password')
+            user.set_password(password)
+            user.save()
+            #new_user = authenticate(username=user.username, password=password)
+            #login(request, new_user)
+            return redirect('login_page')
 
     context = {
         'form': form,

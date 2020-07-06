@@ -3,18 +3,20 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login and Registration form example</title>
+<title>Login and Registration</title>
 <link rel="stylesheet" type="text/css" href="{% static '/css/login.css' %}">
 <link rel="stylesheet" type="text/css" href="{% static '/css/dash.css' %}">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
  
 <body bgcolor="#333333">
 <div id = "header">
 <h1 id = "welcome-text">Welcome to the platform</h1>
 </div>
-
+{% if messages %}
+        {% for message in messages %}
+          <script>M.toast({html: "{{message}}", classes: 'blue rounded', displayLength:2000});</script>
+        {% endfor %}
+{% endif %}
 <div>
     {% block content %}
     {% endblock %}

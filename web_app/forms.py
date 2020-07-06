@@ -32,11 +32,14 @@ class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = User
+        model = Profile
         fields = [
             'username',
             'email',
             'password',
+            'phoneno',
+            'dob',
+            'upload_your_resume'
             
         ]
 

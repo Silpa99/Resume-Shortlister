@@ -4,11 +4,9 @@
     <br>
     <h2>Registration</h2>
 </div>
-<form method="POST" class="post-form" style="color: antiquewhite;">
+<form enctype="multipart/form-data" method="POST" class="post-form" style="color: antiquewhite;">
     {% csrf_token %}
-    <p>Username : {{form.username}}</p>
-    <p style="margin-left: -140px;">Email Id : {{form.email}}</p>
-    <p>Password : {{form.password}}</p>
+    {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Register</button>
 </form> 
 <div style="color: antiquewhite;">

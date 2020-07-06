@@ -2,12 +2,16 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class Profile(models.Model):
-    userid = models.ForeignKey(User, on_delete=models.CASCADE)
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
+    return 'user_{0}/{1}'.format(instance.user_ptr.id, filename)
+
+class Profile(User):
+    #userid = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=30)
     phoneno = models.IntegerField()
     dob = models.DateField()
-    #resume = models.FileField(upload_to = user_directory_path)
+    upload_your_resume = models.FileField(upload_to = user_directory_path)
     
 class Job_postings(models.Model):
     title = models.CharField(max_length=30)
