@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect
 from django.contrib.auth import login , authenticate
 from .models import Profile
-from .forms import UserLoginForm , UserRegisterForm
+from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -48,5 +48,40 @@ def dashboard(request):
     return render(request, "web_app/dashboard.html")
 
 
+
+
+def add_skills(request):
+    form = AddSkillsForm(request.POST)
+    if request.method=='POST':
+        if form.is_valid():
+            form.save()
+            form = AddSkillsForm()
+            return redirect('recruiter')
+
+    context = {
+        'form': form,
+    }
+    return render(request, "web_app/add_skills.html", context)
+
+def recruiter(request):
+    form = RecruiterForm(request.POST)
+
+    context = {
+        'form': form,
+    }
+    return render(request, "web_app/recruiter.html", context)
+
+def jobpost(request):
+    form = JobPostForm(request.POST)
+    if request.method=='POST':
+        if form.is_valid():
+            form.save()
+            form = AddSkillsForm()
+            return redirect('recruiter')
+
+    context = {
+        'form': form,
+    }
+    return render(request, "web_app/jobpost.html", context)
 
 

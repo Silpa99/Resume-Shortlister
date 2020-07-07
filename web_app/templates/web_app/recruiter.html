@@ -1,0 +1,28 @@
+{% extends 'web_app/base.html' %}
+{% block content %}
+<div style="color: antiquewhite;">
+    <br>
+    <h2>RECRUIT WITH US!</h2>
+</div>
+
+<div style="color: antiquewhite;">
+<br>
+<div>
+    <h3>Recruit Your Next Specialized Hire With Us.</h3>
+    <a href="{% url 'jobpost' %}"> 
+      <button class="save btn btn-default"> 
+          Post a job now 
+      </button> 
+  </a> 
+  <a href="{% url 'add_skills' %}"> 
+    <button class="save btn btn-default"> 
+      Add the skills required 
+    </button> 
+</a> 
+{{person}}
+</div>
+<br>
+<br>
+<a href="{% url 'login_page' %}">Sign Out</a>
+</div>
+{% endblock %}

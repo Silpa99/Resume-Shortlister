@@ -12,18 +12,29 @@ class Profile(User):
     phoneno = models.IntegerField()
     dob = models.DateField()
     upload_your_resume = models.FileField(upload_to = user_directory_path)
+    def __str__(self):
+        return self.name
     
 class Job_postings(models.Model):
+    company = models.CharField(max_length=30)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=100)
+    job_address = models.CharField(max_length=30)
+    def __str__(self):
+        return self.title
+
 
 class Skills(models.Model):
     skill_name = models.CharField(max_length = 40)
     jobs = models.ManyToManyField(Job_postings)
+    def __str__(self):
+        return self.skill_name
 
 class Userskills(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE,)
     u_skill = models.ForeignKey(Skills, on_delete = models.CASCADE)
+    def __str__(self):
+        return self.user
 
 
 class Job_applications(models.Model):
@@ -31,3 +42,5 @@ class Job_applications(models.Model):
     post = models.ForeignKey(Job_postings, on_delete=models.CASCADE)
     is_shortlisted = models.CharField(max_length=30)
     is_approved = models.CharField(max_length=30)
+    def __str__(self):
+        return self.applicant

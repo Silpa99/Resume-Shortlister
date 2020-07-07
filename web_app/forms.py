@@ -1,5 +1,5 @@
 from django import forms
-from .models import Profile
+from .models import *
 from django.contrib.auth import (
     authenticate,
     get_user_model
@@ -54,3 +54,48 @@ class UserRegisterForm(forms.ModelForm):
             raise forms.ValidationError(
                 "This email has already been registered")
         return super(UserRegisterForm, self).clean(*args, **kwargs)
+
+
+
+
+
+
+class AddSkillsForm(forms.ModelForm):
+    Skill = forms.CharField(label='Skill name')
+
+    class Meta:
+        model = Skills
+        fields = [
+            'skill_name',
+            'jobs'
+            
+        ]
+
+class RecruiterForm(forms.ModelForm):
+    class Meta:
+        model=Job_postings
+        fields=['title']
+
+class AddSkillsForm(forms.ModelForm):
+    #skill = forms.CharField(label='Skill name')
+    #jobs = forms.ManyToManyField(Job_postings)
+
+    class Meta:
+        model = Skills
+        fields = [
+            'skill_name',
+            'jobs'
+            
+        ]
+
+class JobPostForm(forms.ModelForm):
+
+    class Meta:
+        model = Job_postings
+        fields = ['company', 
+    'title' ,
+    'description' ,
+    'job_address' ,
+        ]
+
+

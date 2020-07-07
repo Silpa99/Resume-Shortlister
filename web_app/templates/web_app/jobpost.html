@@ -1,0 +1,21 @@
+{% extends 'web_app/base.html' %}
+{% block content %}
+<div style="color: antiquewhite;">
+    <br>
+    <h2>RECRUIT WITH US!</h2>
+</div>
+
+<div style="color: antiquewhite;">
+<br>
+<div>
+{{person}}
+</div>
+<br>
+<br>
+<form action ="" method="POST" style="color: antiquewhite;">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="save btn btn-default">Start job post</button>
+</form>
+</div>
+{% endblock %}
