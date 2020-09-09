@@ -4,7 +4,8 @@
     <br>
     <h2>Login</h2>
 </div>
-<form method="POST" class="post-form" style="color: antiquewhite;">{% csrf_token %}
+<form method="POST" class="post-form" style="color: antiquewhite;">
+    {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="save btn btn-default">Login</button>
 </form>   

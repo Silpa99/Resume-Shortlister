@@ -1,20 +1,70 @@
-{% extends 'web_app/base.html' %}
+{%  extends 'web_app/base.html' %}
+
 {% block content %}
-<div style="color: antiquewhite;">
-    <br>
-    <h2>Dashboard</h2>
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<h5> Job Postings:</h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Job name</th>
+					<th>Desciption</th>
+					<th></th>
+				</tr>
+
+				{% for job in jobpostings %}
+					<tr>
+						<td>{{job.title}}</td>
+						<td>{{job.description}}</td>
+						<td><a class="btn btn-sm btn-info" href="">View</a></td>
+						<form method="POST" action="" enctype="multipart/form-data">
+							{% csrf_token %}
+							<input type="hidden" name="jobid" value="{{job.id}}"/>
+							<td><input class="btn btn-sm btn-danger" type="Submit" value="Delete"/></td>
+						</form>
+					</tr>
+				{% endfor %}
+
+			</table>
+			<a class="btn btn-primary  btn-sm btn-block" href="{% url 'jobpost' %}" style="width:160px; height: 40px; padding: 10px;">Add job posting</a>
+		</div>
+	</div>
+
+	
+
+</div>
+<hr>
+<div class="row">
+	<div class="col-md">
+		<h5> Job Applications:</h5>
+		<hr>
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Job name</th>
+					<th>Description</th>
+					<th></th>
+				</tr>
+
+				{% for job in jobpostings %}
+					<tr>
+						<td>{{job.title}}</td>
+						<td>{{job.description}}</td>
+						<td><a class="btn btn-sm btn-info" href="">View</a></td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	
+
 </div>
 
-<div style="color: antiquewhite;">
-<br>
-<div>
-{{person}}
-</div>
-<br>
-<br>
-<form action ="" method="POST" style="color: antiquewhite;">
-  {% csrf_token %}
-</form>
-<a href="{% url 'login_page' %}">Sign Out</a>
-</div>
 {% endblock %}
+

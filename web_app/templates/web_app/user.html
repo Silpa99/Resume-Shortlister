@@ -1,0 +1,79 @@
+{%  extends 'web_app/base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h3>Jobs Available</h3>
+			<table class="table table-sm">
+				<tr>
+					<th>Job Post</th>
+					<th>Description</th>
+					<th>Company</th>
+					<th>Place</th>
+				</tr>
+
+				{% for job in jobpostings %}
+
+				<tr>
+					<td>{{job.title}}</td>
+					<td>{{job.description}}</td>
+					<td>{{job.company}}</td>
+					<td>{{job.job_address}}</td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5> Unapplied Jobs</h5>
+			<table class="table table-sm">
+				<tr>
+					<th>Job name</th>
+					<th>Desciption</th>
+					<th></th>
+				</tr>
+
+				{% for job in new_jobs %}
+					<tr>
+						<td>{{job.title}}</td>
+						<td>{{job.description}}</td>
+						<form method="POST" action="" enctype="multipart/form-data">
+							{% csrf_token %}
+							<input type="hidden" name="jobid" value="{{job.id}}"/>
+						<td><input class="btn btn-primary" type="Submit" value="Apply"/></td>
+						</form>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="card card-body">
+			<h5>Applied Jobs</h5>
+			<table class="table table-sm">
+				<tr>
+					<th>Job name</th>
+					<th>Desciption</th>
+					<th>Status</th>
+				</tr>
+
+				{% for job in applied_jobs %}
+					<tr>
+						<td>{{job.title}}</td>
+						<td>{{job.description}}</td>
+						<td>Pending</td>
+					</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+{% endblock content %}

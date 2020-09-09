@@ -32,7 +32,7 @@ class Migration(migrations.Migration):
         ),
         migrations.RemoveField(
             model_name='profile',
-            name='userid',
+            name='username_id',
         ),
         migrations.AddField(
             model_name='profile',

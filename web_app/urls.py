@@ -1,18 +1,25 @@
 from django.urls import path
 from . import views
-from django.conf import settings
-from django.conf.urls.static import static
+
 
 urlpatterns = [
-    path('',views.login_page,name = "login_page"),
-    path('reg/',views.reg_page,name = "reg_page"),
-    path('dashboard/', views.dashboard, name='dashboard'),
-    
-    
-    path('recruiter/', views.recruiter, name='recruiter'),
-    path('recruiter/addskills/', views.add_skills, name='add_skills'),
-    path('recruiter/jobpost/', views.jobpost, name='jobpost'),
-]
+	path('register/', views.registerPage, name="register"),
+	path('login/', views.loginPage, name="login"),  
+	path('logout/', views.logoutUser, name="logout"),
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', views.home, name="home"),
+    path('user/', views.userPage, name="user-page"),
+
+    #path('account/', views.accountSettings, name="account"),
+
+    #path('products/', views.products, name='products'),
+    #path('customer/<str:pk_test>/', views.customer, name="customer"),
+    path('skill/<str:pk_test>/', views.skill, name="skill"),
+    path('addskills/', views.add_skills, name='add_skills'),
+    path('jobpost/', views.jobpost, name='jobpost'),
+    path('createprofile/', views.createprofile, name="createprofile"),
+    #path('jobapplications/<str:pk>/', views.jobapplications, name="jobapplications"),
+    #path('delete_order/<str:pk>/', views.deleteOrder, name="delete_order"),
+
+
+]
